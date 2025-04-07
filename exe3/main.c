@@ -41,13 +41,14 @@ void process_task(void *p) {
                 data_list[4] = data;
             }
 
-            
-            int soma = 0;
-            for (int i = 0; i < tam; i++) {
-                soma += data_list[i];
+            if (tam>4){
+                int soma = 0;
+                for (int i = 0; i < 5; i++) {
+                    soma += data_list[i];
+                }
+                int media = soma / 5;
+                printf("%d\n", media);
             }
-            int media = soma / tam;
-            printf("%d\n", media);
 
             vTaskDelay(pdMS_TO_TICKS(50));
         }
