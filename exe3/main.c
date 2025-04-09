@@ -47,7 +47,7 @@ void process_task(void *p) {
                 soma += data_list[i];
             }
 
-            int media = soma / len;
+            int media = soma / 5;
             
 
             // deixar esse delay!
