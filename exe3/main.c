@@ -48,6 +48,7 @@ void process_task(void *p) {
             }
 
             int media = soma / 5;
+            printf("%d\n", media);
             
 
             // deixar esse delay!
