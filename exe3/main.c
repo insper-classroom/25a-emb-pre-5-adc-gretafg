@@ -25,31 +25,32 @@ void data_task(void *p) {
 
 void process_task(void *p) {
     int data = 0;
-    int tam = 0;
-    int data_list[5] = {0,0,0,0,0};
+    int len = 0;
+    int data_list[5] = {0, 0, 0, 0, 0};
 
     while (true) {
         if (xQueueReceive(xQueueData, &data, 100)) {
-            if (tam < 5) {
-                data_list[tam] = data;
-                tam++;
+
+            if (len < 5) {
+                data_list[len] = data;
+                len++;
             } else {
-                
-                for (int i = 0; i < 4; i++) {
-                    data_list[i] = data_list[i + 1];
-                }
+                data_list[0] = data_list[1];
+                data_list[1] = data_list[2];
+                data_list[2] = data_list[3];
+                data_list[3] = data_list[4];
                 data_list[4] = data;
             }
 
-            if (tam>=5){
-                int soma = 0;
-                for (int i = 0; i < 5; i++) {
-                    soma += data_list[i];
-                }
-                int media = soma / 5;
-                printf("%d\n", media);
+            int soma = 0;
+            for (int i = 0; i < len; i++) {
+                soma += data_list[i];
             }
 
+            int media = soma / len;
+            
+
+            // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
         }
     }
